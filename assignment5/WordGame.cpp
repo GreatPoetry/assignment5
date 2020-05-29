@@ -134,7 +134,7 @@ void WordFinder::resetSearch()
   }
   currentStr = "";
 }
-void WordFinder::FindWords()
+void WordFinder::FindWords(int maxLength)
 {
   
   for(int row = 0; row < board.getNumRows(); row++)
@@ -142,12 +142,12 @@ void WordFinder::FindWords()
     for(int col = 0; col < board.getNumCols(); col++)
     {
       resetSearch();
-      search(row,col);
+      search(row,col, maxLength);
     }
   }
 }
 
-void WordFinder::search(int r, int c)
+void WordFinder::search(int r, int c, int maxLength)
 {
   visited[r][c] = true;
   std::cout << currentStr << std::endl;
@@ -162,10 +162,10 @@ void WordFinder::search(int r, int c)
     {
       for(int col = c-1; col <= c+1; col++)
       {
-        if(row >=0 && col >=0 && row < board.getNumRows() && col < board.getNumCols() && !visited[row][col] && currentStr.length() < 9)
+        if(row >=0 && col >=0 && row < board.getNumRows() && col < board.getNumCols() && !visited[row][col] && currentStr.length() < maxLength)
         {
           
-          search(row, col);
+          search(row, col, maxLength);
           currentStr.pop_back();
           visited[row][col] = false;
         }

@@ -56,11 +56,11 @@ class WordFinder
 {
 public:
   WordFinder(const Board &brd, Dictionary &dict);
-  void FindWords();
+  void FindWords(int maxLength=9);
   void printResults();
 private:
   void resetSearch();
-  void search(int r, int c);
+  void search(int r, int c, int maxLength);
   std::vector<std::vector<bool>> visited;
   Board board;
   Dictionary* dict;
