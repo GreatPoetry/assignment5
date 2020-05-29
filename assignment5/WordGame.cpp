@@ -106,7 +106,7 @@ bool Dictionary::IsPrefix(const std::string prefix) { return vocab.IsPrefix(pref
 WordFinder::WordFinder(const Board &brd,  Dictionary &d)
 {
   board = brd;
-  dict = d;
+  dict = &d;
   visited.resize(board.getNumRows(), std::vector<bool>(board.getNumCols(), 0));
   
 }
@@ -152,11 +152,11 @@ void WordFinder::search(int r, int c)
   visited[r][c] = true;
   std::cout << currentStr << std::endl;
   currentStr.push_back(board.letterByRC(r, c));
-  if (dict.Contains(currentStr))
+  if (dict->Contains(currentStr))
   {
     foundWords.insert(currentStr);
   }
-  if (dict.IsPrefix(currentStr))
+  if (dict->IsPrefix(currentStr))
   {
     for(int row = r-1; row <= r+1; row++)
     {

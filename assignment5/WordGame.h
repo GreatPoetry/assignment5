@@ -63,7 +63,7 @@ private:
   void search(int r, int c);
   std::vector<std::vector<bool>> visited;
   Board board;
-  Dictionary dict;
+  Dictionary* dict;
   std::set<std::string> foundWords;
   std::string currentStr;
 };
